@@ -1,0 +1,28 @@
+{
+  "name": "amouch-animalerie",
+  "version": "1.0.0",
+  "description": "Application web animalerie avec architecture microservices",
+  "scripts": {
+    "install:all": "cd frontend && npm install && cd ../services/animals && npm install && cd ../reservations && npm install && cd ../stocks && npm install",
+    "dev:frontend": "cd frontend && npm start",
+    "dev:animals": "cd services/animals && npm run dev",
+    "dev:reservations": "cd services/reservations && npm run dev",
+    "dev:stocks": "cd services/stocks && npm run dev",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "keywords": [
+    "animalerie",
+    "microservices",
+    "react",
+    "nodejs",
+    "mysql"
+  ],
+  "author": "AMOUCH",
+  "license": "MIT",
+  "dependencies": {
+    "mysql2": "^3.15.3"
+  }
+}
+

@@ -1,0 +1,134 @@
+.appointments-page {
+  padding: 1rem;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.section h2 {
+  color: #22c55e;
+  margin-bottom: 1.5rem;
+}
+
+.upcoming-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.appointment-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.3s;
+}
+
+.appointment-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.appointment-card.upcoming {
+  border-left: 4px solid #22c55e;
+}
+
+.apt-icon {
+  font-size: 3rem;
+}
+
+.apt-info {
+  flex: 1;
+}
+
+.apt-info h3 {
+  color: #22c55e;
+  margin-bottom: 0.5rem;
+}
+
+.apt-info p {
+  margin-bottom: 0.3rem;
+  color: #555;
+}
+
+.apt-info .reason {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #eee;
+  font-style: italic;
+  color: #666;
+}
+
+.apt-status {
+  margin-top: 0.5rem;
+}
+
+.apt-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.vet-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.vet-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.vet-card h3 {
+  color: #22c55e;
+  margin-bottom: 0.5rem;
+}
+
+.vet-card p {
+  margin-bottom: 0.3rem;
+  color: #555;
+}
+
+.vet-fees {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.fee {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.fee span {
+  color: #666;
+}
+
+.fee strong {
+  color: #10b981;
+}
+
+.badge-primary {
+  background: #22c55e;
+  color: white;
+}
+
+.badge-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+

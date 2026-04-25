@@ -1,0 +1,194 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: amouch_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: amouch_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - amouch_network
+
+  animals-service:
+    build: ./services/animals
+    container_name: animals_service
+    ports:
+      - "3001:3001"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_NAME: amouch_db
+      PORT: 3001
+    depends_on:
+      - mysql
+    networks:
+      - amouch_network
+
+  veterinary-service:
+    build: ./services/veterinary
+    container_name: veterinary_service
+    ports:
+      - "3002:3002"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_NAME: amouch_db
+      PORT: 3002
+    depends_on:
+      - mysql
+    networks:
+      - amouch_network
+
+  adoptions-service:
+    build: ./services/adoptions
+    container_name: adoptions_service
+    ports:
+      - "3003:3003"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_NAME: amouch_db
+      PORT: 3003
+    depends_on:
+      - mysql
+    networks:
+      - amouch_network
+
+  awareness-service:
+    build: ./services/awareness
+    container_name: awareness_service
+    ports:
+      - "3004:3004"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_NAME: amouch_db
+      PORT: 3004
+    depends_on:
+      - mysql
+    networks:
+      - amouch_network
+
+  reservations-service:
+    build: ./services/reservations
+    container_name: reservations_service
+    ports:
+      - "3005:3005"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_NAME: amouch_db
+      PORT: 3005
+    depends_on:
+      - mysql
+    networks:
+      - amouch_network
+
+  stocks-service:
+    build: ./services/stocks
+    container_name: stocks_service
+    ports:
+      - "3006:3006"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_NAME: amouch_db
+      PORT: 3006
+    depends_on:
+      - mysql
+    networks:
+      - amouch_network
+
+  appointments-service:
+    build: ./services/appointments
+    container_name: appointments_service
+    ports:
+      - "3007:3007"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_NAME: amouch_db
+      PORT: 3007
+    depends_on:
+      - mysql
+    networks:
+      - amouch_network
+
+  messages-service:
+    build: ./services/messages
+    container_name: messages_service
+    ports:
+      - "3008:3008"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_NAME: amouch_db
+      PORT: 3008
+    depends_on:
+      - mysql
+    networks:
+      - amouch_network
+
+  auth-service:
+    build: ./services/auth
+    container_name: auth_service
+    ports:
+      - "3009:3009"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_NAME: amouch_db
+      PORT: 3009
+      JWT_SECRET: amouch_dev_secret
+    depends_on:
+      - mysql
+    networks:
+      - amouch_network
+
+  frontend:
+    build: ./frontend
+    container_name: amouch_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_ANIMALS_API: http://localhost:3001
+      REACT_APP_VETERINARY_API: http://localhost:3002
+      REACT_APP_ADOPTIONS_API: http://localhost:3003
+      REACT_APP_AWARENESS_API: http://localhost:3004
+      REACT_APP_RESERVATIONS_API: http://localhost:3005
+      REACT_APP_STOCKS_API: http://localhost:3006
+      REACT_APP_APPOINTMENTS_API: http://localhost:3007
+      REACT_APP_MESSAGES_API: http://localhost:3008
+      REACT_APP_AUTH_API: http://localhost:3009
+    depends_on:
+      - animals-service
+      - veterinary-service
+      - adoptions-service
+      - awareness-service
+      - reservations-service
+      - stocks-service
+      - appointments-service
+      - messages-service
+      - auth-service
+    networks:
+      - amouch_network
+
+volumes:
+  mysql_data:
+
+networks:
+  amouch_network:
+    driver: bridge
