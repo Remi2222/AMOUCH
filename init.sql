@@ -2,7 +2,6 @@
 CREATE DATABASE IF NOT EXISTS amouch_db;
 USE amouch_db;
 
--- Table Animaux (étendue)
 CREATE TABLE IF NOT EXISTS animals (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -27,7 +26,6 @@ CREATE TABLE IF NOT EXISTS animals (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Table Réservations
 CREATE TABLE IF NOT EXISTS reservations (
     id INT AUTO_INCREMENT PRIMARY KEY,
     animal_id INT NOT NULL,
@@ -42,7 +40,6 @@ CREATE TABLE IF NOT EXISTS reservations (
     FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 
--- Table Stocks (produits et accessoires)
 CREATE TABLE IF NOT EXISTS stocks (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(100) NOT NULL,
@@ -57,7 +54,6 @@ CREATE TABLE IF NOT EXISTS stocks (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Table Dossiers Médicaux
 CREATE TABLE IF NOT EXISTS medical_records (
     id INT AUTO_INCREMENT PRIMARY KEY,
     animal_id INT NOT NULL,
@@ -72,7 +68,6 @@ CREATE TABLE IF NOT EXISTS medical_records (
     FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 
--- Table Vaccinations
 CREATE TABLE IF NOT EXISTS vaccinations (
     id INT AUTO_INCREMENT PRIMARY KEY,
     animal_id INT NOT NULL,
@@ -85,7 +80,6 @@ CREATE TABLE IF NOT EXISTS vaccinations (
     FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 
--- Table Médicaments
 CREATE TABLE IF NOT EXISTS medications (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -101,7 +95,6 @@ CREATE TABLE IF NOT EXISTS medications (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table Traitements
 CREATE TABLE IF NOT EXISTS treatments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     animal_id INT NOT NULL,
@@ -118,7 +111,6 @@ CREATE TABLE IF NOT EXISTS treatments (
     FOREIGN KEY (medication_id) REFERENCES medications(id)
 );
 
--- Table Adoptions
 CREATE TABLE IF NOT EXISTS adoptions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     animal_id INT NOT NULL,
@@ -138,7 +130,6 @@ CREATE TABLE IF NOT EXISTS adoptions (
     FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 
--- Table Campagnes de Sensibilisation
 CREATE TABLE IF NOT EXISTS awareness_campaigns (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(200) NOT NULL,
@@ -164,7 +155,6 @@ CREATE TABLE IF NOT EXISTS awareness_campaigns (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Table Interactions Campagnes (Likes, Vues)
 CREATE TABLE IF NOT EXISTS campaign_interactions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     campaign_id INT NOT NULL,
@@ -176,7 +166,6 @@ CREATE TABLE IF NOT EXISTS campaign_interactions (
     UNIQUE KEY unique_interaction (campaign_id, user_email, interaction_type)
 );
 
--- Table Commentaires Campagnes
 CREATE TABLE IF NOT EXISTS campaign_comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     campaign_id INT NOT NULL,
@@ -190,7 +179,6 @@ CREATE TABLE IF NOT EXISTS campaign_comments (
     FOREIGN KEY (campaign_id) REFERENCES awareness_campaigns(id) ON DELETE CASCADE
 );
 
--- Données de test - Maroc
 INSERT INTO animals (name, species, breed, age_years, age_months, gender, weight, color, price, description, status, adoption_status, health_status) VALUES
 ('Aziz', 'Chien', 'Sloughi', 2, 3, 'male', 28.5, 'Beige', NULL, 'Lévrier marocain élégant et affectueux, parfait pour une famille', 'available', 'adoptable', 'healthy'),
 ('Aicha', 'Chat', 'Chat de rue marocain', 1, 6, 'female', 3.8, 'Tigré', NULL, 'Chatte calme et douce, adaptée à la vie en appartement', 'available', 'adoptable', 'healthy'),
@@ -235,9 +223,6 @@ INSERT INTO stocks (product_name, category, quantity, unit_price, supplier, min_
 ('Seringues 5ml', 'Matériel Médical', 200, 8.00, 'MedSupply Morocco', 50, 'Seringues stériles usage vétérinaire'),
 ('Collier Élisabéthain', 'Matériel Médical', 25, 85.00, 'VetEquipment Casablanca', 10, 'Collier de protection post-opératoire');
 
--- ============================================
--- NOUVELLES TABLES - Fonctionnalités Avancées
--- ============================================
 
 -- Table Utilisateurs (pour authentification et rôles)
 CREATE TABLE IF NOT EXISTS users (
@@ -400,24 +385,19 @@ CREATE TABLE IF NOT EXISTS reviews (
 ALTER TABLE animals ADD CONSTRAINT fk_animals_shelter 
 FOREIGN KEY (shelter_id) REFERENCES shelters(id) ON DELETE SET NULL;
 
--- Données de test pour les nouvelles tables
 
--- Utilisateurs (mot de passe: demo123) - Maroc
 INSERT INTO users (name, email, password, phone, role, status) VALUES
 ('Ahmed Alaoui', 'ahmed.alaoui@gmail.com', '$2a$10$YQ3U8LZMvPZvW8lVrGxMy.rGxMxVv3N9X8YQ3U8LZMvPZvW8lVrGxM', '0612345678', 'adopter', 'active'),
 ('Refuge SPA Casablanca', 'contact@spa-casa.ma', '$2a$10$YQ3U8LZMvPZvW8lVrGxMy.rGxMxVv3N9X8YQ3U8LZMvPZvW8lVrGxM', '0522123456', 'shelter', 'active'),
 ('Dr. Fatima Benali', 'dr.fatima@vetmaroc.ma', '$2a$10$YQ3U8LZMvPZvW8lVrGxMy.rGxMxVv3N9X8YQ3U8LZMvPZvW8lVrGxM', '0533789012', 'veterinarian', 'active'),
 ('Sanae El Amrani', 'sanae.elamrani@gmail.com', '$2a$10$YQ3U8LZMvPZvW8lVrGxMy.rGxMxVv3N9X8YQ3U8LZMvPZvW8lVrGxM', '0667890123', 'adopter', 'active');
 
--- Refuges - Maroc
 INSERT INTO shelters (user_id, shelter_name, location, city, phone, email, capacity, description) VALUES
 (2, 'Refuge SPA Casablanca', 'Hay Riad', 'Casablanca', '0522123456', 'contact@spa-casa.ma', 80, 'Refuge associatif depuis 2005, spécialisé dans le sauvetage et la réhabilitation des animaux abandonnés au Maroc');
 
--- Vétérinaires - Maroc
 INSERT INTO veterinarians (user_id, license_number, specialization, clinic_name, city, consultation_fee, teleconsultation_available, teleconsultation_fee, years_experience) VALUES
 (3, 'VET-MA-2024-001', 'Médecine générale', 'Clinique Vétérinaire Al Amal', 'Casablanca', 300.00, TRUE, 200.00, 12);
 
--- Disponibilités vétérinaire - Maroc
 INSERT INTO veterinarian_availability (veterinarian_id, day_of_week, start_time, end_time) VALUES
 (1, 'monday', '09:00:00', '18:00:00'),
 (1, 'tuesday', '09:00:00', '18:00:00'),
@@ -426,17 +406,14 @@ INSERT INTO veterinarian_availability (veterinarian_id, day_of_week, start_time,
 (1, 'friday', '09:00:00', '18:00:00'),
 (1, 'saturday', '09:00:00', '14:00:00');
 
--- Rendez-vous - Maroc
 INSERT INTO appointments (animal_id, user_id, veterinarian_id, appointment_date, appointment_type, status, reason, fee) VALUES
 (1, 1, 1, '2025-10-25 10:00:00', 'checkup', 'scheduled', 'Contrôle de routine', 300.00),
 (2, 4, 1, '2025-10-26 14:30:00', 'vaccination', 'confirmed', 'Rappel de vaccin', 250.00);
 
--- Messages - Maroc
 INSERT INTO messages (sender_id, receiver_id, conversation_id, animal_id, subject, message) VALUES
 (1, 2, 'conv_1_2', 1, 'Demande d\'information sur Aziz', 'السلام عليكم، أنا مهتم بتبني أزيز. هل ما زال متاحًا؟'),
 (2, 1, 'conv_1_2', 1, 'RE: Demande d\'information sur Aziz', 'وعليكم السلام، نعم أزيز ما زال متاحًا. يمكننا تنظيم لقاء إذا كنت ترغب في ذلك.');
 
--- Historique des animaux - Maroc
 INSERT INTO animal_history (animal_id, event_type, event_date, description, performed_by) VALUES
 (1, 'arrival', '2024-08-15 10:00:00', 'Arrivée au refuge - Trouvé errant dans Hay Riad, Casablanca', 2),
 (1, 'medical_treatment', '2024-08-16 14:00:00', 'Examen vétérinaire complet - Bonne santé générale', 3),
