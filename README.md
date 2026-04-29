@@ -3,22 +3,22 @@
 منصة شاملة لإدارة الطب البيطري وتبني الحيوانات في المغرب
 Plateforme complète pour la gestion vétérinaire, l'adoption d'animaux et la sensibilisation au Maroc.
 
-## 🚀 Technologies
+##  Technologies
 
 - **Frontend**: React.js
 - **Backend**: Node.js avec architecture microservices
 - **Base de données**: MySQL
 - **Conteneurisation**: Docker
 
-## 📋 Fonctionnalités
+##  Fonctionnalités
 
-### 🐾 Gestion des Animaux
+###  Gestion des Animaux
 - ✅ Profils complets (âge, poids, race, couleur, sexe)
 - ✅ Statut de santé et comportement
 - ✅ Statut d'adoption
 - ✅ Photos et descriptions détaillées
 
-### 🏥 Module Vétérinaire
+###  Module Vétérinaire
 - ✅ Dossiers médicaux complets
 - ✅ Historique des consultations
 - ✅ Gestion des vaccinations
@@ -26,33 +26,33 @@ Plateforme complète pour la gestion vétérinaire, l'adoption d'animaux et la s
 - ✅ Suivi des traitements
 - ✅ Rappels de vaccinations
 
-### 💊 Gestion des Médicaments
+###  Gestion des Médicaments
 - ✅ Catalogue complet des médicaments
 - ✅ Gestion des stocks pharmaceutiques
 - ✅ Dates d'expiration
 - ✅ Prescriptions et dosages
 - ✅ Effets secondaires
 
-### 🏠 Module d'Adoption
+###  Module d'Adoption
 - ✅ Demandes d'adoption en ligne
 - ✅ Processus d'approbation
 - ✅ Visites à domicile
 - ✅ Contrats d'adoption
 - ✅ Suivi post-adoption
 
-### 📢 Sensibilisation
+###  Sensibilisation
 - ✅ Campagnes de sensibilisation
 - ✅ Éducation et prévention
 - ✅ Articles de santé animale
 - ✅ Conseils d'adoption
 
-### 📦 Gestion des Stocks
+###  Gestion des Stocks
 - ✅ Produits alimentaires
 - ✅ Matériel médical
 - ✅ Accessoires
 - ✅ Alertes de réapprovisionnement
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 amouche/
@@ -71,7 +71,7 @@ amouche/
 └── README.md
 ```
 
-## 🚀 Installation
+##  Installation
 
 ### Prérequis
 - Node.js 16+
@@ -102,7 +102,7 @@ docker-compose up -d
    - Messages: http://localhost:3008
    - Auth: http://localhost:3009
 
-## 📦 Installation manuelle
+##  Installation manuelle
 
 ### Frontend
 ```bash
@@ -118,7 +118,7 @@ npm install
 npm start
 ```
 
-## 🗄️ Base de données
+##  Base de données
 
 La base de données MySQL sera créée automatiquement avec Docker Compose.
 
