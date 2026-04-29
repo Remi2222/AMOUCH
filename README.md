@@ -52,24 +52,6 @@ Plateforme complète pour la gestion vétérinaire, l'adoption d'animaux et la s
 - ✅ Accessoires
 - ✅ Alertes de réapprovisionnement
 
-##  Architecture
-
-```
-amouche/
-├── frontend/              # Application React.js
-├── services/
-│   ├── animals/          # Service gestion animaux
-│   ├── veterinary/       # Service vétérinaire (santé, médicaments)
-│   ├── adoptions/        # Service adoptions
-│   ├── awareness/        # Service sensibilisation
-│   ├── reservations/     # Service réservations
-│   ├── stocks/           # Service gestion stocks
-│   ├── appointments/     # Service rendez-vous
-│   ├── messages/         # Service messages
-│   └── auth/             # Service authentification
-├── docker-compose.yml
-└── README.md
-```
 
 ##  Installation
 
@@ -122,10 +104,5 @@ npm start
 
 La base de données MySQL sera créée automatiquement avec Docker Compose.
 
-**Configuration par défaut:**
-- Host: localhost
-- Port: 3306
-- User: root
-- Password: root123
-- Database: amouch_db
+
 
